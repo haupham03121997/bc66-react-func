@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import DemoUseState from './hooks/DemoUseState';
 import DemoForm from './form/DemoForm';
 import DemoRedux from './components/DemoRedux';
+import DemoUseEffect from "./hooks/DemoUseEffect";
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
       <div className=" my-10 container mx-auto">
         {/* <DemoUseState /> */}
         {/* <DemoForm/> */}
-        <DemoRedux />
+        {/* <DemoRedux /> */}
+        <DemoUseEffect />
       </div>
       <Footer />
     </>
