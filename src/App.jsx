@@ -1,25 +1,12 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './App.css';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import DemoUseState from './hooks/DemoUseState';
-import DemoForm from './form/DemoForm';
-import DemoRedux from './components/DemoRedux';
-import DemoUseEffect from "./hooks/DemoUseEffect";
+import useRouteElement from './routes/useRouteElement';
 
 function App() {
+  const routesElement = useRouteElement();
   return (
     <>
-      <Header />
-      <div className=" my-10 container mx-auto">
-        {/* <DemoUseState /> */}
-        {/* <DemoForm/> */}
-        {/* <DemoRedux /> */}
-        <DemoUseEffect />
-      </div>
-      <Footer />
+      {routesElement}
+      {/* HomePage , AboutPage , ServicePage...*/}
     </>
   );
 }
