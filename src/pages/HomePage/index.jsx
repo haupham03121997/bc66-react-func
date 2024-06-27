@@ -1,10 +1,10 @@
 import React from 'react';
-import QuanLyPhim from '../../components/QuanLyPhim';
+import Banner from "./Banner";
 
 const HomePage = () => {
   return (
     <div>
-      <QuanLyPhim />
+      <Banner />
     </div>
   );
 };

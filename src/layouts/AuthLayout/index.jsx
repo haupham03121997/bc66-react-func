@@ -1,12 +1,16 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
-const AuthLayout = () => {
+export default function AuthLayout() {
+  const navigate = useNavigate();
   return (
-    <div className="bg-slate-300 w-screen h-screen flex items-center justify-center">
-      <Outlet />
+    <div className="w-full h-screen flex items-center justify-center bg-[#f5f5f5]">
+      <div className="bg-white rounded-2xl p-8">
+        <div className="text-center flex items-center justify-center mb-8 cursor-pointer">
+          <img src="/vite.svg" width={80} onClick={() => navigate('/')} />
+        </div>
+        <Outlet />
+      </div>
     </div>
   );
-};
-
-export default AuthLayout;
+}
