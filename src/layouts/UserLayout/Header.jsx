@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { UserContext } from "../../context/UserContext";
+import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from '../../context/UserContext';
+import { Select } from 'antd';
 
 export default function Header() {
-
+  const navigate = useNavigate()
   const [currentUser] = useContext(UserContext);
 
   // console.log('userContext', userContext);
@@ -81,6 +82,19 @@ export default function Header() {
               >
                 Contact
               </Link>
+            </li>
+            <li>
+              <Select
+                style={{ width: 200 }}
+                placeholder="Demo hooks"
+                onChange={(value) => {
+                  navigate(`/demo-hooks/${value}`);
+                }}
+                options={[
+                  { value: 'use-ref', label: 'Demo useRef' },
+                  { value: 'memo', label: 'Demo Memo' },
+                ]}
+              />
             </li>
             {currentUser ? (
               <div className="flex gap-3 items-center">

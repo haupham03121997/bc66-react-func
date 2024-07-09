@@ -1,15 +1,30 @@
-import React from 'react';
+import React , { Suspense, lazy } from 'react';
 import { useRoutes } from 'react-router-dom';
-import HomePage from '../pages/HomePage';
-import AboutPage from '../pages/AboutPage';
-import ServicePage from '../pages/ServicePage';
-import PricingPage from '../pages/PricingPage';
-import ContactPage from '../pages/ContactPage';
-import MovieDetailsPage from '../pages/MovieDetailsPage';
+// import HomePage from '../pages/HomePage';
+// import AboutPage from '../pages/AboutPage';
+
+// import ServicePage from '../pages/ServicePage';
+// import PricingPage from '../pages/PricingPage';
+// import ContactPage from '../pages/ContactPage';
+// import MovieDetailsPage from '../pages/MovieDetailsPage';
+// import LoginPage from '../pages/LoginPage';
+// import NotFound from '../pages/NotFound';
+// import DemoUseRef from "../hooks/DemoUseRef/DemoUseRef";
+// import DemoMeMo from "../hooks/DemoMemo/DemoMeMo";
+
 import UserLayout from '../layouts/UserLayout';
-import LoginPage from '../pages/LoginPage';
 import AuthLayout from '../layouts/AuthLayout';
-import NotFound from '../pages/NotFound';
+
+const HomePage = lazy(() => import('../pages/HomePage'));
+const AboutPage = lazy(() => import('../pages/AboutPage'));
+const ServicePage = lazy(() => import('../pages/ServicePage'));
+const PricingPage = lazy(()=> import("../pages/PricingPage"));
+const ContactPage = lazy(()=> import("../pages/ContactPage"));
+const MovieDetailsPage = lazy(() => import('../pages/MovieDetailsPage'));
+const LoginPage = lazy(() => import('../pages/LoginPage'));
+const DemoUseRef = lazy(() => import('../hooks/DemoUseRef/DemoUseRef'));
+const DemoMeMo = lazy(() => import('../hooks/DemoMemo/DemoMeMo'));
+const NotFound = lazy(() => import('../pages/NotFound'));
 
 const useRouteElement = () => {
   const routes = useRoutes([
@@ -20,36 +35,84 @@ const useRouteElement = () => {
         {
           index: true,
           path: '',
-          element: <HomePage />,
+          element: (
+            <Suspense fallback={<p>Loading....</p>}>
+              <HomePage />
+            </Suspense>
+          ),
         },
         {
           path: '/about',
-          element: <AboutPage />,
+          element: (
+            <Suspense fallback={<p>Loading....</p>}>
+              <AboutPage />
+            </Suspense>
+          ),
         },
         {
           path: '/service',
-          element: <ServicePage />,
+          element: (
+            <Suspense fallback={<p>Loading....</p>}>
+              <ServicePage />
+            </Suspense>
+          ),
         },
         {
           path: '/pricing',
-          element: <PricingPage />,
+          element: (
+            <Suspense fallback={<p>Loading....</p>}>
+              <PricingPage />
+            </Suspense>
+          ),
         },
         {
           path: '/contact',
-          element: <ContactPage />,
+          element: (
+            <Suspense fallback={<p>Loading....</p>}>
+              <ContactPage />
+            </Suspense>
+          ),
         },
       ],
     },
 
-    { path: '/movie/:id', element: <MovieDetailsPage /> },
+    {
+      path: '/movie/:id',
+      element: (
+        <Suspense fallback={<p>Loading....</p>}>
+          <MovieDetailsPage />
+        </Suspense>
+      ),
+    },
     {
       path: '/auth',
       element: <AuthLayout />,
       children: [
-        { path: '/auth/login', element: <LoginPage /> },
+        {
+          path: '/auth/login',
+          element: (
+            <Suspense fallback={<p>Loading....</p>}>
+              <LoginPage />
+            </Suspense>
+          ),
+        },
         {
           path: '/auth/register',
           element: <LoginPage />,
+        },
+      ],
+    },
+    {
+      path: '/demo-hooks',
+      children: [
+        {
+          index: true,
+          path: '/demo-hooks/use-ref',
+          element: <DemoUseRef />,
+        },
+        {
+          path: '/demo-hooks/memo',
+          element: <DemoMeMo />,
         },
       ],
     },
